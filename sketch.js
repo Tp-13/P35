@@ -96,7 +96,7 @@ function addFood(){
 }
 
 function feedDog(){
-  dog.addImage(happyDog);
+  dog.changeAnimation("dogHappy",happyDog);
   foodObj.updateFoodStock(foodObj.getFoodStock()-1);
   database.ref('/').update({
     Food:foodObj.getFoodStock(),
@@ -104,6 +104,3 @@ function feedDog(){
   })
 }
 
-
-
-// database.ref('/').update({ Food:foodObj.getFoodStock(), FeedTime:hour() }) }

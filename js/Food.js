@@ -6,24 +6,28 @@ class Food{
     }
 
     getFoodStock(){
-        var foodStockRef = database.ref("foodStock");
-        foodStockRef.on("value", function(data){
-            foodStock = data.val();
+        var foodStockRef = database.ref("Food");
+        foodStockRef.on("value", (data)=>{
+            this.foodStock = data.val();
         })
+        console.log(this.foodStock)
+        return this.foodStock;
     }
 
     updateFoodStock(){
-        database.ref("/").update({
-            foodStock: stock
-        })
+        if (this.foodStock !== undefined){
+            database.ref("/").update({
+                Food: this.foodStock
+            })   
+        }
     }
 
-    deductFood(){
-        var stocks = "stock" + foodStock;
-        database.ref(stocks).set({
-            stock: stock
+    /*deductFood(){
+        //var stocks = "Food" + foodStock;
+        database.ref('/').set({
+            Food: this.foodStock
         })
-    }
+    }*/
 
     display(){
         var x = 80;
