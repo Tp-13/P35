@@ -6,6 +6,7 @@ var feed;
 var fedTime;
 var lastFed;
 var foodObj;
+var addFoodBtn;
 
 function preload()
 {
@@ -28,9 +29,13 @@ function setup() {
   feed.position(700,95);
   feed.mousePressed(feedDog);
 
-  addFood = createButton("Add Food");
+  /*addFood = createButton("Add Food");
   addFood.position(800,95);
-  addFood.mousePressed(addFood);
+  addFood.mousePressed(addFood);*/
+
+  addFoodBtn = createButton("Food");
+  addFoodBtn.position(800, 95);
+  addFoodBtn.mousePressed(addFood);
 }
 
 
@@ -97,9 +102,11 @@ function addFood(){
 
 function feedDog(){
   dog.changeAnimation("dogHappy",happyDog);
-  foodObj.updateFoodStock(foodObj.getFoodStock()-1);
+  var fs = foodObj.getFoodStock()-1;
+  console.log("fs" + fs);
+  foodObj.updateFoodStock(fs);
   database.ref('/').update({
-    Food:foodObj.getFoodStock(),
+    Food:fs,
     FeedTime:hour()
   })
 }
